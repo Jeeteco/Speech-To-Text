@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './App.css'
-import AudioRecorder from "../components/AudioRecorder"
-import FileUpload from '../components/fileUpload'
-
-
-
+import './App.css';
+import AudioRecorder from '../components/audioRecorder';
+import FileUpload from '../components/fileUpload';
 import TranscriptDisplay from '../components/TranscriptDisplay';
 
 
@@ -56,14 +53,12 @@ function App() {
       <div className='bg-gray-800 h-screen  w-screen  flex '>
         <div className='w-1/3 bg-gray-900 '>
           <div className="h-screen flex flex-wrap items-center justify-center bg-gradient-to-br from-yellow-900/50 to-blue-600/40  to-indigo-800/40    text-white text-4xl font-semibold text-center ">
-           
-           <h1 className='text-4xl text-orange-600/80'><i>WELCOME IN  <span className='text-red-400/70 text-5xl'> आवाज़</span></i></h1>
-            
+
+            <h1 className='text-4xl text-orange-600/80'><i>WELCOME IN  <span className='text-red-400/70 text-5xl'> आवाज़</span></i></h1>
+
             🎤 Your voice, transformed into words effortlessly
           </div>
 
-
-         
         </div>
 
 
