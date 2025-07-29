@@ -5,47 +5,87 @@ import AudioRecorder from "../components/AudioRecorder"
 import FileUpload from '../components/fileUpload'
 
 
+
 import TranscriptDisplay from '../components/TranscriptDisplay';
-import AllAudio from '../components/AllAudio';
+
 
 function App() {
   const [transcript, setTranscript] = useState('');
 
   const handleAudioBlob = async (blob) => {
 
-    const formData = new FormData();
-    formData.append('audio', blob, 'recorded_audio.webm');
+    try {
+      const formData = new FormData();
+      formData.append('audio', blob, 'recorded_audio.webm');
 
-    const response = await axios.post("http://localhost:5000/api/audio/upload", formData);
-
-
-    const audioId = response.data.audioId;
-    // console.log(audioId);
-
-    const res = await axios.post("http://localhost:5000/api/audio/transcribe", { audioId });
-
-    //console.log(res);
+      const response = await axios.post("http://localhost:5000/api/audio/upload", formData);
 
 
 
+      const audioId = response?.data?.audioId;
+      // console.log(audioId);
 
-    setTranscript(res.data.transcript.transcript);
-    //  console.log(response.data);
+      if (!audioId) {
+        console.error("audio not recorded propely ");
+      }
+
+      const res = await axios.post("http://localhost:5000/api/audio/transcribe", { audioId });
+
+      const transcriptData = res?.data?.transcript?.transcript;
+
+      if (!transcriptData || transcriptData.trim() === "") {
+        alert("no Speech avaible for transcription");
+
+      }
+      else {
+        setTranscript(transcriptData);
+      }
+
+    } catch (error) {
+
+      console.error("Error in the  HandleAudio blob", error);
+
+    }
+
+
 
   };
 
   return (
     <>
-      <div className=' h-screen  w-screen m-auto flex item-center justify-center'>
-        <div className="p-6 w-2/3 bg-pink-100 ">
-           <h1 className="text-black text-3xl font-extrabold shadow-white-4 text-center underline "> Speech to Text App</h1>
-          <FileUpload onTranscript={setTranscript} />
-          <AudioRecorder onAudioReady={handleAudioBlob} />
-          <TranscriptDisplay transcript={transcript} />
-          <AllAudio />
+      <div className='bg-gray-800 h-screen  w-screen  flex '>
+        <div className='w-1/3 bg-gray-900 '>
+          <div className="h-screen flex flex-wrap items-center justify-center bg-gradient-to-br from-yellow-900/50 to-blue-600/40  to-indigo-800/40    text-white text-4xl font-semibold text-center ">
+           
+           <h1 className='text-4xl text-orange-600/80'><i>WELCOME IN  <span className='text-red-400/70 text-5xl'> आवाज़</span></i></h1>
+            
+            🎤 Your voice, transformed into words effortlessly
+          </div>
+
+
+         
         </div>
 
+
+        <div className='w-2/3 h-full flex flex-wrap item-center justify-center'>
+
+          <h1 className="text-green-300  text-shadow-lg text-center mt-6  "> <span className='
+            text-blue-300 text-6xl  font-extrabold'>आवाज़ </span> <i className='text-6xl  font-extrabold'>- Speech to Text App</i> <br />
+            <p className='text-blue-100 text-'>Convert your voice into accurate text instantly. Upload or record audio and watch the magic happen in real time.</p>
+          </h1>
+          <div className=" p-2 w-3/4 h-fit bg-blue-950/20 rounded  ">
+
+            <FileUpload onTranscript={setTranscript} />
+            <AudioRecorder onAudioReady={handleAudioBlob} />
+            <TranscriptDisplay transcript={transcript} />
+
+          </div>
+        </div>
+
+
+
       </div>
+
     </>
   )
 }

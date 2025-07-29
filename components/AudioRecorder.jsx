@@ -32,12 +32,15 @@ const AudioRecorder = ({ onAudioReady }) => {
 
 
     return (
-        <div className="p-4 border rounded shadow mt-4">
-            <button
-                className={`px-4 py-2 rounded ${recording ? 'bg-red-500' : 'bg-green-500'} text-white`}
-                onClick={recording ? stopRecording : startRecording}
-            >Tap&Speak</button>
+        <div className="backdrop-blur-md bg-gradient-to-br from-red-300/20 to-blue-200/20 border border-white/30 rounded-xl shadow-xl mt-2 p-6">
+           
+            
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg "  onClick={recording ? stopRecording : startRecording}>
+            🎤 Start Recording
+          </button>
+
         </div>
+
     )
 }
 

@@ -31,19 +31,20 @@ const FileUpload = ({ onTranscript }) => {
 
 
     return (
-        <div className="p-6 border rounded shadow">
+        <div className=" backdrop-blur-lg bg-gradient-to-br from-violet-100/30 to-blue-100/30 to-green-100/30 border border-white/30 rounded-xl shadow-xl p-6 border rounded shadow-">
             <input
                 type="file"
                 accept="audio/*"
                 onChange={(e) => setFile(e.target.files[0])}
-                className="border p-2"
+                className="backdrop-blur-lg bg-white border p-2 w-full "
             />
             <button
                 onClick={handleUpload}
-                className="mt-2 px-4 py-1 bg-blue-500 text-white rounded"
+                className=" w-1/2 mt-4 p-2 bg-blue-500 text-white rounded-full"
             >
                 Upload & transcribe
             </button>
+                              
         </div>
     );
 };
