@@ -13,6 +13,9 @@ My project आवाज़ is an speech-to-text Web app project which converts t
 
 git clone "https://github.com/Jeeteco/Speech-To-Text.git"
 
+##
 cd project
+##
 npm install
+##
 npm run dev
