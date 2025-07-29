@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import AudioRecorder from '../components/AudioRecorder';
-import FileUpload from '../components/fileUpload';
+import FileUpload from '../components/FileUpload';
 import TranscriptDisplay from '../components/TranscriptDisplay';
 
 
