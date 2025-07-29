@@ -40,7 +40,7 @@ const FileUpload = ({ onTranscript }) => {
             />
             <button
                 onClick={handleUpload}
-                className=" w-1/2 mt-4 p-2 bg-blue-500 text-white rounded-full"
+                className=" border w-1/2 mt-4 p-2 bg-blue-500 text-white rounded-full"
             >
                 Upload & transcribe
             </button>

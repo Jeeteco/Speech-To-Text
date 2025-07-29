@@ -18,9 +18,9 @@ export const transcribeAudio = async (file) => {
     const transcriptRes = await axios.post('http://localhost:5000/api/audio/transcribe', {
       audioId,
     });
-    console.log( transcriptRes.data.transcript.transcript)
+    // console.log( transcriptRes.data.transcript.transcript)
 
-    return transcriptRes.data.transcript.transcript;
+    return transcriptRes?.data?.transcript?.transcript;
 
   } catch (error) {
     // console.error("Error during transcription:", error);

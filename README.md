@@ -19,3 +19,6 @@ cd project
 npm install
 ##
 npm run dev
+
+## The backend
+git clone "https://github.com/Jeeteco/Speech-to-text-backendApp.git"

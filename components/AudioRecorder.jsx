@@ -35,7 +35,7 @@ const AudioRecorder = ({ onAudioReady }) => {
         <div className="backdrop-blur-md bg-gradient-to-br from-red-300/20 to-blue-200/20 border border-white/30 rounded-xl shadow-xl mt-2 p-6">
            
             
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg "  onClick={recording ? stopRecording : startRecording}>
+            <button className="bg-blue-500  border  text-white px-6 py-3 rounded-full font-semibold shadow-lg "  onClick={recording ? stopRecording : startRecording}>
             🎤 Start Recording
           </button>
 
