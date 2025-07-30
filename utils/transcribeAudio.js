@@ -1,5 +1,6 @@
 // src/utils/transcribeAudio.js
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const transcribeAudio = async (file) => {
   try {
@@ -7,15 +8,17 @@ export const transcribeAudio = async (file) => {
     const formData = new FormData();
     formData.append('audio', file);
 
-    const uploadRes = await axios.post('http://localhost:5000/api/audio/upload', formData);
+    const uploadRes = await axios.post(`${backendUrl}/api/audio/upload`, formData);
     const audioId = uploadRes.data.audioId;
+
+    // console.log(uploadRes);
 
     if (!audioId) throw new Error('Upload succeeded but no audioId returned');
 
    
 
     // Send to /transcribe route
-    const transcriptRes = await axios.post('http://localhost:5000/api/audio/transcribe', {
+    const transcriptRes = await axios.post(`${backendUrl}/api/audio/transcribe`, {
       audioId,
     });
     // console.log( transcriptRes.data.transcript.transcript)

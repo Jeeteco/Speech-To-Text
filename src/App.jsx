@@ -6,6 +6,11 @@ import FileUpload from '../components/FileUpload';
 import TranscriptDisplay from '../components/TranscriptDisplay';
 
 
+
+// import HistoryBox from '../components/HistoryBox';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 function App() {
   const [transcript, setTranscript] = useState('');
 
@@ -15,7 +20,7 @@ function App() {
       const formData = new FormData();
       formData.append('audio', blob, 'recorded_audio.webm');
 
-      const response = await axios.post("http://localhost:5000/api/audio/upload", formData);
+      const response = await axios.post(`${backendUrl}/api/audio/upload`, formData);
 
 
 
@@ -26,9 +31,11 @@ function App() {
         console.error("audio not recorded propely ");
       }
 
-      const res = await axios.post("http://localhost:5000/api/audio/transcribe", { audioId });
+      const res = await axios.post(`${backendUrl}/api/audio/upload`, { audioId });
 
       const transcriptData = res?.data?.transcript?.transcript;
+
+      // console.log(res.data)
 
       if (!transcriptData || transcriptData.trim() === "") {
         alert("no Speech avaible for transcription");
@@ -68,13 +75,13 @@ function App() {
             text-blue-300 text-6xl  font-extrabold'>आवाज़ </span> <i className='text-6xl  font-extrabold'>- Speech to Text App</i> <br />
             <p className='text-blue-100 text-'>Convert your voice into accurate text instantly. Upload or record audio and watch the magic happen in real time.</p>
           </h1>
-          <div className=" p-2 w-3/4 h-fit bg-blue-950/20 rounded  ">
+          <div className=" p-2 w-150 h-fit bg-blue-950/20 rounded  ">
 
             <FileUpload onTranscript={setTranscript} />
             <AudioRecorder onAudioReady={handleAudioBlob} />
             <TranscriptDisplay transcript={transcript} />
-
           </div>
+
         </div>
 
 
