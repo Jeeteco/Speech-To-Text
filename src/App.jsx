@@ -31,7 +31,7 @@ function App() {
         console.error("audio not recorded propely ");
       }
 
-      const res = await axios.post(`${backendUrl}/api/audio/upload`, { audioId });
+      const res = await axios.post(`${backendUrl}/api/audio/transcribe`, { audioId });
 
       const transcriptData = res?.data?.transcript?.transcript;
 
